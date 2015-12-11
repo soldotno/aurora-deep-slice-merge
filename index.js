@@ -4,7 +4,7 @@
   } else if (typeof exports === 'object') {
     module.exports = factory();
   } else {
-    root.deepmerge = factory();
+    root.merge = factory();
   }
 }(this, function() {
   function merge(target, src) {
@@ -18,7 +18,7 @@
         if (typeof dst[i] === 'undefined') {
           dst[i] = e;
         } else if (typeof e === 'object' && e) {
-          dst[i] = deepmerge(target[i], e);
+          dst[i] = merge(target[i], e);
         } else {
           if (target.indexOf(e) === -1) {
             dst.push(e);
@@ -42,7 +42,7 @@
           if (!target[key]) {
             dst[key] = src[key];
           } else {
-            dst[key] = deepmerge(target[key], src[key]);
+            dst[key] = merge(target[key], src[key]);
           }
         }
       });
