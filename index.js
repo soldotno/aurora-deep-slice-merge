@@ -60,7 +60,7 @@
      * Handle the .modules arrays specifically
      */
     function deepSliceRecursivelyArray(subObjectArray, subResultArray) {
-      subObjectArray.forEach((arrayItem, i) => {
+      subObjectArray.forEach(function(arrayItem, i) {
         /**
          * Only do counting on
          * non-higher-level modules
