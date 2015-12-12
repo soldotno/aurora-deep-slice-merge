@@ -7,6 +7,14 @@
     root.merge = factory();
   }
 }(this, function() {
+  function isObject(a) {
+    return (typeof a === 'object') && !Array.isArray(a);
+  }
+
+  function isArray(a) {
+    return Array.isArray(a);
+  }
+
   function merge(target, src) {
     var array = Array.isArray(src);
     var dst = array && [] || {};
