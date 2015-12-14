@@ -96,6 +96,10 @@
      */
     function deepSliceRecursivelyObject(subObject, subResult) {
       for (var property in subObject) {
+        if (!subObject[property]) {
+          continue;
+        }
+
         if (isObject(subObject[property]) && !isArray(subObject[property])) {
           subResult[property] = {};
           deepSliceRecursivelyObject(subObject[property], subResult[property])
