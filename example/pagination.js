@@ -1,5 +1,6 @@
 var slice = require('../').slice;
 var merge = require('../').merge;
+var util = require('util');
 
 function clone(elem) {
   return JSON.parse(JSON.stringify(elem));

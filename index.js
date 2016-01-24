@@ -15,6 +15,16 @@
     return Array.isArray(a);
   }
 
+  function clone(o) {
+    var result;
+
+    try {
+      result = JSON.parse(JSON.stringify(o));
+    } catch (e) {}
+
+    return result || {};
+  }
+
   function merge(target, src) {
     var array = Array.isArray(src);
     var dst = array && [] || {};
@@ -119,8 +129,30 @@
     return result;
   }
 
+  function append(obj, list) {
+    var result = clone(obj);
+
+    if (
+      !result ||
+      !result.app ||
+      !result.app.options ||
+      !result.app.options.modules
+    ) {
+      return result;
+    }
+
+    if (!list || !list.length) {
+      return result;
+    }
+
+    result.app.options.modules = result.app.options.modules.concat(clone(list));
+
+    return result;
+  }
+
   return {
     slice: slice,
-    merge: merge
+    merge: merge,
+    append: append
   };
 }));
