@@ -2,7 +2,7 @@
   "author": "Eirik Vullum",
   "name": "aurora-deep-slice-merge",
   "description": "A library for deep (recursive) slicing, merging and appending of Aurora config objects",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/soldotno/aurora-deep-slice-merge.git"

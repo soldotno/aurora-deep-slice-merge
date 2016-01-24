@@ -25,7 +25,9 @@
     return result || {};
   }
 
-  function merge(target, src) {
+  function merge(_target, _src) {
+    var target = clone(_target);
+    var src = clone(_src);
     var array = Array.isArray(src);
     var dst = array && [] || {};
 
@@ -69,7 +71,8 @@
     return dst;
   }
 
-  function slice(obj, startIndex, amount) {
+  function slice(_obj, startIndex, amount) {
+    var obj = copy(obj);
     var totalIndex = 0;
     var sliced = 0;
     var result = {};
