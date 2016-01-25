@@ -72,7 +72,7 @@
   }
 
   function slice(_obj, startIndex, amount) {
-    var obj = clone(obj);
+    var obj = clone(_obj);
     var totalIndex = 0;
     var sliced = 0;
     var result = {};
