@@ -9,17 +9,17 @@ const config = {
   meta: {
     title: 'Blabla'
   },
-  app: {
-    type: 'awesome-app',
-    options: {
-      modules: [{
-        type: 'awesome-module',
-        options: {
+  root: {
+    component: 'awesome-app',
+    props: {
+      children: [{
+        component: 'awesome-module',
+        props: {
           a: 5
         }
       }, {
-        type: 'awesome-module',
-        options: {
+        component: 'awesome-module',
+        props: {
           b: 10
         }
       }]
@@ -28,29 +28,29 @@ const config = {
 };
 
 const appendage = [{
-  type: 'awesome-hom',
-  options: {
-    modules: [{
-      type: 'awesome-module',
-      options: {
+  component: 'awesome-hom',
+  props: {
+    children: [{
+      component: 'awesome-module',
+      props: {
         c: 15
       }
     }, {
-      type: 'awesome-module',
-      options: {
+      component: 'awesome-module',
+      props: {
         d: 20
       }
     }, {
-      type: 'awesome-hom',
-      options: {
-        modules: [{
-          type: 'awesome-module',
-          options: {
+      component: 'awesome-hom',
+      props: {
+        children: [{
+          component: 'awesome-module',
+          props: {
             e: 25
           }
         }, {
-          type: 'awesome-module',
-          options: {
+          component: 'awesome-module',
+          props: {
             f: 30
           }
         }]
