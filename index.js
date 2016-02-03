@@ -78,15 +78,15 @@
     var result = {};
 
     /**
-     * Handle the .modules arrays specifically
+     * Handle the .children arrays specifically
      */
     function deepSliceRecursivelyArray(subObjectArray, subResultArray) {
       subObjectArray.forEach(function(arrayItem, i) {
         /**
          * Only do counting on
-         * non-higher-level modules
+         * non-higher-level children
          */
-        if (!isArray((subObjectArray[i].options || {}).modules)) {
+        if (!isArray((subObjectArray[i].props || {}).children)) {
           /**
            * Only start adding if
            * we've reached the start index
@@ -116,7 +116,7 @@
         if (isObject(subObject[property]) && !isArray(subObject[property])) {
           subResult[property] = {};
           deepSliceRecursivelyObject(subObject[property], subResult[property])
-        } else if (isArray(subObject[property]) && property === 'modules') {
+        } else if (isArray(subObject[property]) && property === 'children') {
           subResult[property] = [];
           deepSliceRecursivelyArray(subObject[property], subResult[property])
         } else if (isArray(subObject[property])) {
@@ -137,9 +137,9 @@
 
     if (
       !result ||
-      !result.app ||
-      !result.app.options ||
-      !result.app.options.modules
+      !result.root ||
+      !result.root.props ||
+      !result.root.props.children
     ) {
       return result;
     }
@@ -148,7 +148,7 @@
       return result;
     }
 
-    result.app.options.modules = result.app.options.modules.concat(clone(list));
+    result.root.props.children = result.root.props.children.concat(clone(list));
 
     return result;
   }
