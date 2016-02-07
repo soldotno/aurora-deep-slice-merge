@@ -11,29 +11,29 @@ const util = require('util')
 const { slice, merge } = require('aurora-deep-slice-merge');
 
 let configPage1 = { meta: { title: 'Blabla' },
-  app:
-   { type: 'awesome-app', options:
-      { modules:
-         [ { type: 'awesome-module', options: { a: 5 } },
-           { type: 'awesome-module', options: { b: 10 } },
-           { type: 'awesome-hom', options: {
-             modules:
-              [ { type: 'awesome-module', options: { c: 15 } } ] } } ] } } }
+  root:
+   { component: 'awesome-app', props:
+      { children:
+         [ { component: 'awesome-module', props: { a: 5 } },
+           { component: 'awesome-module', props: { b: 10 } },
+           { component: 'awesome-hom', props: {
+             children:
+              [ { component: 'awesome-module', props: { c: 15 } } ] } } ] } } }
 
 let configPage2 = { meta: { title: 'Blabla' },
-  app:
-   { type: 'awesome-app', options:
-      { modules:
+  root:
+   { component: 'awesome-app', props:
+      { children:
          [ null,
            null,
-           { type: 'awesome-hom', options:
-             { modules:
+           { component: 'awesome-hom', props:
+             { children:
               [ null,
-                { type: 'awesome-module', options: { d: 20 } },
-                { type: 'awesome-hom', options: {
-                  modules:
-                   [ { type: 'awesome-module', options: { e: 25 } },
-                     { type: 'awesome-module', options: { f: 30 } } ] } } ] } } ] } } }
+                { component: 'awesome-module', props: { d: 20 } },
+                { component: 'awesome-hom', props: {
+                  children:
+                   [ { component: 'awesome-module', props: { e: 25 } },
+                     { component: 'awesome-module', props: { f: 30 } } ] } } ] } } ] } } }
 
 console.log(util.inspect(merge(configPage1, configPage2)));
 ```
@@ -42,22 +42,22 @@ output:
 
 ```js
 { meta: { title: 'Blabla' },
-  app:
-   { type: 'awesome-app', options:
-      { modules:
-         [ { type: 'awesome-module', options: { a: 5 } },
-           { type: 'awesome-module', options: { b: 10 } },
-           { type: 'awesome-hom', options:
-              { modules:
-                 [ { type: 'awesome-module', options: { c: 15 } },
-                   { type: 'awesome-module', options: { d: 20 } },
-                   { type: 'awesome-hom', options:
-                      { modules:
-                         [ { type: 'awesome-module', options: { e: 25 } },
-                           { type: 'awesome-module', options: { f: 30 } } ] } } ] } } ] } } }
+  root:
+   { component: 'awesome-app', props:
+      { children:
+         [ { component: 'awesome-module', props: { a: 5 } },
+           { component: 'awesome-module', props: { b: 10 } },
+           { component: 'awesome-hom', props:
+              { children:
+                 [ { component: 'awesome-module', props: { c: 15 } },
+                   { component: 'awesome-module', props: { d: 20 } },
+                   { component: 'awesome-hom', props:
+                      { children:
+                         [ { component: 'awesome-module', props: { e: 25 } },
+                           { component: 'awesome-module', props: { f: 30 } } ] } } ] } } ] } } }
 ```
 
-Append a list of modules to an Aurora configs (shallow).
+Append a list of children to an Aurora configs (shallow).
 
 Example
 =======
@@ -67,40 +67,40 @@ const util = require('util')
 const { append } = require('aurora-deep-slice-merge');
 
 let config = { meta: { title: 'Blabla' },
-  app:
-   { type: 'awesome-app', options:
-      { modules:
-         [ { type: 'awesome-module', options: { a: 5 } },
-           { type: 'awesome-module', options: { b: 10 } } ] } } }
+  root:
+   { component: 'awesome-app', props:
+      { children:
+         [ { component: 'awesome-module', props: { a: 5 } },
+           { component: 'awesome-module', props: { b: 10 } } ] } } }
 
-let modulesToAppend = [
-  { type: 'awesome-hom', options:
-    { modules:
-      [ { type: 'awesome-module', options: { c: 15 } },
-        { type: 'awesome-module', options: { d: 20 } },
-        { type: 'awesome-hom', options:
-          { modules:
-            [ { type: 'awesome-module', options: { e: 25 } },
-              { type: 'awesome-module', options: { f: 30 } } ] } } ] } } ]
+let childrenToAppend = [
+  { component: 'awesome-hom', props:
+    { children:
+      [ { component: 'awesome-module', props: { c: 15 } },
+        { component: 'awesome-module', props: { d: 20 } },
+        { component: 'awesome-hom', props:
+          { children:
+            [ { component: 'awesome-module', props: { e: 25 } },
+              { component: 'awesome-module', props: { f: 30 } } ] } } ] } } ]
 
-console.log(util.inspect(append(config, modulesToAppend)));
+console.log(util.inspect(append(config, childrenToAppend)));
 ```
 
 ```js
 { meta: { title: 'Blabla' },
-  app:
-   { type: 'awesome-app', options:
-      { modules:
-         [ { type: 'awesome-module', options: { a: 5 } },
-           { type: 'awesome-module', options: { b: 10 } },
-           { type: 'awesome-hom', options:
-              { modules:
-                 [ { type: 'awesome-module', options: { c: 15 } },
-                   { type: 'awesome-module', options: { d: 20 } },
-                   { type: 'awesome-hom', options:
-                      { modules:
-                         [ { type: 'awesome-module', options: { e: 25 } },
-                           { type: 'awesome-module', options: { f: 30 } } ] } } ] } } ] } } }
+  root:
+   { component: 'awesome-app', props:
+      { children:
+         [ { component: 'awesome-module', props: { a: 5 } },
+           { component: 'awesome-module', props: { b: 10 } },
+           { component: 'awesome-hom', props:
+              { children:
+                 [ { component: 'awesome-module', props: { c: 15 } },
+                   { component: 'awesome-module', props: { d: 20 } },
+                   { component: 'awesome-hom', props:
+                      { children:
+                         [ { component: 'awesome-module', props: { e: 25 } },
+                           { component: 'awesome-module', props: { f: 30 } } ] } } ] } } ] } } }
 ```
 
 Methods
@@ -120,7 +120,7 @@ slice(x, startIndex, amount)
 merge(x, y)
 
 /**
- * Append list of modules to config x
+ * Append list of children to config x
  */
 append(x, list)
 ```
