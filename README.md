@@ -1,6 +1,8 @@
 Aurora Deep Slice, Merge and Append
 ===================================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/soldotno/aurora-deep-slice-merge.svg)](https://greenkeeper.io/)
+
 Tool for slicing, merging and appending to Aurora configuration objects.
 
 Example
